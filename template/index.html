@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧬 SCAI - Chest X-ray analyzer</title>
+  <link rel="stylesheet" href="../static/styles.css" />
+</head>
+<body>
+  <div class="desktop-window">
+    <div class="window-header">
+      <div class="window-buttons">
+        <span class="btn red"></span>
+        <span class="btn yellow"></span>
+        <span class="btn green"></span>
+      </div>
+      <span class="window-title">SCAI - Chest X-ray analyzer</span>
+    </div>
+
+    <div class="window-body">
+      <div class="left-panel">
+        <div class="image-box">
+          <img id="preview" class="preview" />
+          <img id="gradcam-img" class="gradcam-img hidden" />
+        </div>
+
+        <div class="upload-controls">
+          <input type="file" id="fileInput" accept="image/*" hidden />
+          <button id="uploadBtn">📤 Upload Image</button>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div id="result-section" class="hidden">
+          <div class="prediction-card">
+            <h2 id="pred-class" class="pred-class"></h2>
+            <p id="pred-summary" class="pred-summary"></p>
+          </div>
+
+          <div class="ai-response">
+            <div class="ai-header">🧠 AI Medical Insight</div>
+            <div id="ai-text" class="ai-text"></div>
+          </div>
+        </div>
+
+        <div id="placeholder" class="placeholder">
+          <p>Upload a microscopic cell image to start the analysis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../static/script.js"></script>
+</body>
+</html>
