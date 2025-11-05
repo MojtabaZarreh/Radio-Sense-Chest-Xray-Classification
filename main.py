@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
@@ -22,6 +23,10 @@ model = load_model()
 target_layer = model.features[-2]
 transform = get_transform()
 class_labels = ['Covid-19', 'Emphysema', 'Normal', 'Pneumonia-Bacterial', 'Pneumonia-Viral', 'Tuberculosis']
+
+@app.get("/")
+async def root():
+    return FileResponse("template/index.html")
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):

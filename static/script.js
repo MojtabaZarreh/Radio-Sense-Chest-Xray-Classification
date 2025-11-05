@@ -37,7 +37,7 @@ fileInput.addEventListener("change", async (e) => {
     setTimeout(() => {
       resultSection.classList.remove("hidden");
       predClass.textContent = data.class;
-      predSummary.textContent = data.summary;
+      predSummary.textContent = `The model detected signs of ${data.class} in the uploaded X-ray.`;
 
       gradcamImg.src = data.gradcam_url;
       gradcamImg.classList.remove("hidden");

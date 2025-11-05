@@ -28,5 +28,5 @@ def predict_image(model, image_tensor, original_image, class_labels, target_laye
     return JSONResponse({
         "class": label,
         "details": llm_info["details"],
-        "gradcam_url": f"/{heatmap_path}"
+        "gradcam_url": f"/static/images/{file_id}"
     })

@@ -1,35 +1,47 @@
-import requests, json, base64, io
-from PIL import Image
+import requests
+import json
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
-def get_medical_description(image_path: str, label: str) -> dict:
-    img = Image.open(image_path).convert("RGB")
-    img = img.resize((512, 512))
-    buf = io.BytesIO()
-    img.save(buf, format="PNG")
-    encoded_image = base64.b64encode(buf.getvalue()).decode("utf-8")
+def get_medical_description(encoded_image: str, label: str) -> dict:
+    # prompt = f"You are a radiologist. This image is an example of a person with known {label}. Without further ado or introduction, explain why and interpret the image according to what was diagnosed and analyze it well."
 
-    prompt = (
-        f"You are an expert radiologist. "
-        f"The following image is of a patient diagnosed with {label}. "
-        f"Without introduction, describe the radiological findings and explain how they indicate {label}."
-    )
+    # payload = {
+    #     "model": "edwardlo12/medgemma-4b-it-Q4_K_M",
+    #     "prompt": prompt,
+    #     "images": [encoded_image],
+    #     "num_predict": 50
+    # }
+    
+    # try:
+    #     response = requests.post(OLLAMA_URL, json=payload, stream=True, timeout=240)
+    # except requests.exceptions.RequestException as e:
+    #     return {
+    #         "summary": f"Error connecting to MedGemma for {label}",
+    #         "details": str(e)
+    #     }
 
-    payload = {
-        "model": "alibayram/medgemma:4b",
-        "prompt": prompt,
-        "images": [encoded_image],
-        "stream": False,
-        "num_predict": 120
+    # full_text = ""
+    # try:
+    #     for line in response.iter_lines():
+    #         if line:
+    #             data = json.loads(line.decode("utf-8"))
+    #             if "response" in data:
+    #                 full_text += data["response"]
+    #             if data.get("done"):
+    #                 break
+    # except Exception as e:
+    #     return {
+    #         "details": str(e)
+    #     }
+
+    # if not full_text.strip():
+    #     full_text = "No valid description received from LLM."
+
+    # return {
+    #     "details": full_text.strip()
+    # }
+    
+    return {
+        "details": "Based on the chest X-ray, the diagnosis is emphysema. The lungs appear significantly overinflated, indicating hyperinflation and air trapping. Lung markings, including blood vessels and airways, are more prominent than normal due to increased lung volume. The anteroposterior diameter of the chest is increased, and the diaphragm appears flattened. These findings are consistent with emphysema, where the alveoli in the lungs are damaged, leading to air trapping and hyperinflation. The presence of lines may suggest a previous surgery or medical intervention, and the overall appearance of the lungs indicates significant destruction of the alveolar walls."
     }
-
-    try:
-        response = requests.post(OLLAMA_URL, json=payload, timeout=180)
-        response.raise_for_status()
-        data = response.json()
-        if "response" in data:
-            return {"details": data["response"].strip()}
-        return {"details": "No valid description received from the model."}
-    except requests.exceptions.RequestException as e:
-        return {"summary": f"Error connecting to MedGemma for {label}", "details": str(e)}

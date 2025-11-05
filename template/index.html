@@ -34,17 +34,20 @@
         <div id="result-section" class="hidden">
           <div class="prediction-card">
             <h2 id="pred-class" class="pred-class"></h2>
-            <p id="pred-summary" class="pred-summary"></p>
+            <p id="pred-summary" class="pred-summary" style="font-size: 12px;"></p>
           </div>
 
           <div class="ai-response">
             <div class="ai-header">🧠 AI Medical Insight</div>
-            <div id="ai-text" class="ai-text"></div>
+            <div id="ai-text" 
+                class="ai-text" 
+                style="max-height:250px;overflow-y:auto;white-space:pre-wrap;line-height:1.6;padding-right:10px;">
+            </div>
           </div>
         </div>
 
         <div id="placeholder" class="placeholder">
-          <p>Upload a microscopic cell image to start the analysis.</p>
+          <p>Upload a chest X-ray image to start the analysis.</p>
         </div>
       </div>
     </div>
