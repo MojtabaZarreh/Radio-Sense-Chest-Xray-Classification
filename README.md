@@ -30,7 +30,7 @@ The system performs **automated diagnosis and visual explanation** of chest X-ra
 3. **Report Generation** : Uses an integrated **medical language model (MedGemma 4B)** via [Ollama](https://ollama.ai) to produce preliminary diagnostic reports in natural language.
 
 
-<img width="905" height="1280" alt="image" src="https://github.com/user-attachments/assets/776afbec-13de-4149-a97e-1a101880040f" />
+<img width="2621" height="1685" alt="image" src="https://github.com/user-attachments/assets/b3b05a5f-4a2b-496e-ba71-4aa5b46d72a3" />
 
 
 ---
