@@ -33,8 +33,3 @@ async def predict(file: UploadFile = File(...)):
     image = Image.open(file.file).convert("RGB")
     image_tensor = transform(image).unsqueeze(0).to(DEVICE)
     return predict_image(model, image_tensor, image, class_labels, target_layer)
-
-
-# @app.post("/describe")
-# def describe_image(encoded_image: str, label: str):
-#     return StreamingResponse(stream_medical_description(encoded_image, label), media_type="text/plain")
