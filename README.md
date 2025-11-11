@@ -90,7 +90,7 @@ Deployment: Docker-compatible
 ## 👥 Team RadioSense
 
 Ghazal Norouzi,
-Mohsaneh Rezaeian,
+Mehsaneh Rezaeian,
 Mojtaba Zarreh,
 Mohammad Jalali,
 Sara Pourbafrani,
